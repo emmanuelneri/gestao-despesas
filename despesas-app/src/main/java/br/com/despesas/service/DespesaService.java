@@ -15,11 +15,11 @@ public class DespesaService {
     private DespesaRepository despesaRepository;
 
     @Transactional
-    public Despesa salvar(Despesa despesa) {
+    public Despesa save(Despesa despesa) {
         return despesaRepository.save(despesa);
     }
 
-    public List<Despesa> buscarTodos() {
+    public List<Despesa> findAll() {
         return despesaRepository.findAll();
     }
 

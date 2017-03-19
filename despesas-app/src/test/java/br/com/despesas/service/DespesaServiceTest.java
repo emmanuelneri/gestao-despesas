@@ -32,10 +32,10 @@ public class DespesaServiceTest {
     @Test
     public void salvar() {
         Despesa despesa = new Despesa();
-        despesaService.salvar(despesa);
+        despesaService.save(despesa);
         assertNotNull(despesa.getId());
 
-        final List<Despesa> despesas = despesaService.buscarTodos();
+        final List<Despesa> despesas = despesaService.findAll();
         assertEquals(1, despesas.size());
         assertThat(despesas, contains(hasProperty("id", is(despesa.getId()))));
     }

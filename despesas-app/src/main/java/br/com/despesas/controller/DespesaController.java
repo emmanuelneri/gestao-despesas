@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class DespesaController {
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity listar() {
+    public ResponseEntity find() {
         // TODO
         return ResponseEntity.ok("Hello");
     }
