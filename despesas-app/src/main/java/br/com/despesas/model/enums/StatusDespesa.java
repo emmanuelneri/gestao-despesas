@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum StatusDespesa {
 
     PENDENTE("Pendente", 1),
@@ -21,10 +20,6 @@ public enum StatusDespesa {
     StatusDespesa(String descricao, int ordem) {
         this.descricao = descricao;
         this.ordem = ordem;
-    }
-
-    public String getStatus() {
-        return this.name();
     }
 
     public String getDescricao() {
