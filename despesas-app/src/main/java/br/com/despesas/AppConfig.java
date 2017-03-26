@@ -1,6 +1,6 @@
 package br.com.despesas;
 
-import br.com.despesas.controller.DespesaController;
+import br.com.despesas.controller.DespesaRestController;
 import br.com.despesas.model.Despesa;
 import br.com.despesas.repository.DespesaRepository;
 import br.com.despesas.service.DespesaService;
@@ -12,6 +12,7 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -19,8 +20,8 @@ import org.springframework.web.filter.CorsFilter;
 
 @SpringBootApplication
 @EnableAutoConfiguration
-@EntityScan(basePackageClasses = {Despesa.class})
-@ComponentScan(basePackageClasses = {DespesaService.class, DespesaController.class})
+@EntityScan(basePackageClasses = {Despesa.class, Jsr310JpaConverters.class})
+@ComponentScan(basePackageClasses = {DespesaService.class, DespesaRestController.class})
 @EnableJpaRepositories(basePackageClasses = {DespesaRepository.class})
 public class AppConfig {
 
