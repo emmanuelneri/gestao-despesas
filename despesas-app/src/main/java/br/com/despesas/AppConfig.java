@@ -1,6 +1,7 @@
 package br.com.despesas;
 
 import br.com.despesas.controller.DespesaRestController;
+import br.com.despesas.exception.GlobalExceptionHandler;
 import br.com.despesas.model.Despesa;
 import br.com.despesas.repository.DespesaRepository;
 import br.com.despesas.service.DespesaService;
@@ -21,7 +22,7 @@ import org.springframework.web.filter.CorsFilter;
 @SpringBootApplication
 @EnableAutoConfiguration
 @EntityScan(basePackageClasses = {Despesa.class, Jsr310JpaConverters.class})
-@ComponentScan(basePackageClasses = {DespesaService.class, DespesaRestController.class})
+@ComponentScan(basePackageClasses = {DespesaService.class, DespesaRestController.class, GlobalExceptionHandler.class})
 @EnableJpaRepositories(basePackageClasses = {DespesaRepository.class})
 public class AppConfig {
 
