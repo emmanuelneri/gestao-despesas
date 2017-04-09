@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="gestao-despesas">
+	<head>
+		<meta name="viewport" content="width=device-width">
+		<meta charset="UTF-8">
+	
+		<link rel="stylesheet" type="text/css" href="/css/app.css">
+		<link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap-theme.css">
+
+	</head>
+	<body class="container">
+		<div ng-view></div>
+
+		<script src="/lib/angular/angular.js"></script>
+		<script src="/lib/angular-i18n/angular-locale_pt-br.js"></script>
+		<script src="/lib/angular-route/angular-route.js"></script>
+		<script src="/lib/angular-resource/angular-resource.js"></script>
+		<script src="/lib/angular-ui-mask/dist/mask.js"></script>
+		<script src="/lib/ng-currency/dist/ng-currency.js"></script>
+		<script src="/lib/angular-smart-table/dist/smart-table.js"></script>
+		<script src="/js/main.js"></script>
+
+		<script src="/js/services/AppService.js"></script>
+		<script src="/js/services/DespesaService.js"></script>
+		<script src="/js/controllers/DespesasController.js"></script>
+		<script src="/js/controllers/DespesaController.js"></script>
+		<script src="/js/services/CategoriaService.js"></script>
+		<script src="/js/services/StatusDespesaService.js"></script>
+	</body>
+</html>

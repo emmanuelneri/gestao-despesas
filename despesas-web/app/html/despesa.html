@@ -1,0 +1,60 @@
+<form ng-submit="salvar()">
+	<div class="panel panel-default">
+		<div class="panel-heading"><h3>Despesas | Criar</h3></div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="categoria">Categoria:</label>
+						<select id="categoria" class="form-control" ng-model="despesa.categoria" 
+						ng-options="categoria.categoria as categoria.descricao for categoria in categorias">
+							<option value="">Selecione</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">	
+				<div class="col-md-12">
+					<div class="form-group">
+						<label for="descricao">Descrição:</label>
+						<textarea id="descricao" rows="3" class="form-control" ng-model="despesa.descricao"></textarea>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="data">Data:</label>
+						<input type="date" name="data" class="form-control" ng-model="despesa.data">
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="valor">Valor:</label>
+						<input type="text" name="valor" class="form-control" ng-model="despesa.valor" min="0" hard-cap="true" ng-currency currency-symbol="R$ " placeholder="R$ 0.00">
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group">
+						<label for="status">Status:</label>
+						<select id="status" class="form-control" ng-model="despesa.status" ng-options="status.status as status.descricao for status in statusList">
+							<option value="">Selecione</option>
+						</select>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-4">
+					<button type="submit" class="btn btn-primary">Salvar</button>
+					<a href="#/" class="btn btn-default">Voltar</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>

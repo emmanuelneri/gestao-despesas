@@ -1,0 +1,142 @@
+<style type="text/css">
+	table {
+	  border-collapse: separate;
+	  border-spacing: 0 5px;
+	}
+
+	thead th {
+	  background-color: #006DCC;
+	  color: white;
+	}
+
+	tbody td {
+	  background-color: #EEEEEE;
+	}
+
+	tr td:first-child,
+	tr th:first-child {
+	  border-top-left-radius: 6px;
+	  border-bottom-left-radius: 6px;
+	}
+
+	tr td:last-child,
+	tr th:last-child {
+	  border-top-right-radius: 6px;
+	  border-bottom-right-radius: 6px;
+	}
+
+</style>
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="jumbotron">
+			<h1 class="text-center">
+				Bem-vindo ao Gestão Despesas
+			</h1>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<a ng-href="#/despesa" class="btn btn-primary" style="float: right;">Nova despesa</a>	
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<form ng-submit="filtrar()">
+			<div class="panel panel-default">
+				<div class="panel-heading"><h3>Despesas | Filtrar</h3></div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="categoria">Categoria:</label>
+								<select id="categoria" class="form-control" ng-model="search.categoria" ng-options="categoria.categoria as categoria.descricao for categoria in categorias">
+									<option value="">Selecione</option>
+								</select>	
+							</div>
+						</div>
+
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Data Inicial:</label>
+								<input type="date" ng-model="search.dataInicial" class="form-control">
+							</div>
+						</div>
+
+						<div class="col-md-3">
+							<div class="form-group">
+								<label>Data Final:</label>
+								<input type="date" ng-model="search.dataFinal" class="form-control">
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="descricao">Descrição:</label>
+								<input id="descricao" ng-model="search.descricao" class="form-control" placeholder="Busque por alguma descrição. Exemplo: almoço">
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="status">Status:</label>
+								<select id="status" ng-model="search.status" ng-options="status.status as status.descricao for status in listaStatus" class="form-control">
+									<option value="">Selecione</option>
+								</select>
+							</div>	
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-12">
+							<button type="submit" class="btn btn-primary">Filtrar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>	
+	</div>
+</div>
+
+
+<div class="table-responsive">
+	<table st-table="displayedCollection" st-pipe="getData" st-items-by-page="itemsByPage" class="table table-hover">
+        <thead>
+            <tr>
+                <th>Categoria</th>
+				<th>Descrição</th>
+				<th>Data</th>
+				<th>Valor</th>
+				<th>Status</th>
+				<th class="text-center"></th>
+            </tr>
+        </thead>
+        <tbody>
+	        <tr ng-repeat="despesa in displayedCollection">
+				<td>{{despesa.categoria}}</td>
+				<td>{{despesa.descricao}}</td>
+				<td>{{despesa.data | date:'dd/MM/yyyy'}}</td>
+				<td>{{despesa.valor}}</td>
+				<td>{{despesa.status}}</td>
+				<td class="text-center">
+					<a href="#/despesa/{{despesa.id}}" class="btn btn-warning" data-toggle="tooltip" title="Editar">
+						<i class="fa fa-edit"></i>
+					</a>
+					<a class="btn btn-danger" ng-click="remover(despesa)" data-toggle="tooltip" title="Apagar">
+						<i class="fa fa-trash"></i>
+					</button>
+				</td>
+	        </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td class="text-center" st-pagination="" st-template="/components/search/template.html" colspan="5"></td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
