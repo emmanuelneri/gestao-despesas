@@ -7,10 +7,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,6 +29,7 @@ import java.time.LocalDate;
 @Table(uniqueConstraints = @UniqueConstraint(name = "despesa_uk", columnNames = {"data", "descricao", "categoria"}))
 @Builder
 @EqualsAndHashCode(of = {"data", "descricao", "categoria"})
+@NoArgsConstructor
 @AllArgsConstructor
 @Getter @Setter
 public class Despesa {
@@ -46,9 +50,11 @@ public class Despesa {
     private String descricao;
 
     @NotNull(message = "Categoria é obrigatório")
+    @Enumerated(EnumType.STRING)
     private Categoria categoria;
 
     @NotNull
+    @Enumerated(EnumType.STRING)
     private StatusDespesa status = StatusDespesa.PENDENTE;
 
     public void validarValor() {
