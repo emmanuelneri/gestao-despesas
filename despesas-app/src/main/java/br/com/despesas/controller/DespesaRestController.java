@@ -19,7 +19,7 @@ public class DespesaRestController {
     @Autowired
     private DespesaService despesaService;
 
-    @RequestMapping(method = RequestMethod.POST, value = "/busca")
+    @RequestMapping(method = RequestMethod.POST, value = "/search")
     public ResponseEntity findAll(@RequestBody DespesaBuscaTO despesaBuscaTO) {
         final Page<Despesa> despesas = despesaService.findAll(despesaBuscaTO);
         return ResponseEntity.ok(despesas);
