@@ -1,7 +1,7 @@
 angular.module('gestao-despesas').controller('DespesaController', ['$scope', '$routeParams', 'DespesaService', 'CategoriaService', 'StatusDespesaService', DespesaController]);
 
 function DespesaController($scope, $routeParams, DespesaService, CategoriaService, StatusDespesaService) {
-	$scope.despesa = {};
+
 	$scope.statusList = [];
 	$scope.categorias = [];
 
@@ -44,9 +44,16 @@ function DespesaController($scope, $routeParams, DespesaService, CategoriaServic
 			});
 	}
 
+	function inicializarDespesa() {
+        $scope.despesa = {
+            status: 'PENDENTE'
+        };
+    }
+
 	function inicializar() {
 		carregarListaCategorias();
 		carregarListaStatus();
+        inicializarDespesa();
 	}
 
 	inicializar();
