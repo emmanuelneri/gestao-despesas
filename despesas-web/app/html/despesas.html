@@ -10,7 +10,9 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<a ng-href="#/despesa" class="btn btn-primary" style="float: right; margin-bottom: 10px">Nova despesa</a>
+		<a ng-href="#/despesa" class="btn btn-primary" style="float: right; margin-bottom: 10px">
+			<i class="fa fa-plus"></i> Nova despesa
+		</a>
 	</div>
 </div>
 
@@ -65,7 +67,9 @@
 
 					<div class="row">
 						<div class="col-md-12">
-							<button type="submit" class="btn btn-primary">Filtrar</button>
+							<button type="submit" class="btn btn-success">
+								<i class="fa fa-search"></i> Filtrar
+							</button>
 						</div>
 					</div>
 				</div>
@@ -95,7 +99,7 @@
 				<td>{{despesa.valor}}</td>
 				<td>{{despesa.status}}</td>
 				<td class="text-center">
-					<a href="#/despesa/{{despesa.id}}" class="btn btn-warning" data-toggle="tooltip" title="Editar">
+					<a href="#/despesa/{{despesa.id}}" class="btn btn-info" data-toggle="tooltip" title="Editar">
 						<i class="fa fa-edit"></i>
 					</a>
 					<a class="btn btn-danger" ng-click="remover(despesa)" data-toggle="tooltip" title="Apagar">
