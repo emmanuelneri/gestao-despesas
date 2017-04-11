@@ -21,7 +21,7 @@ function DespesaService($http, AppService) {
         },
 
         search: function(search) {
-            return $http.post(AppService.HOST() + '/despesas/busca', search);   
+            return $http.post(AppService.HOST() + '/despesas/search', search);
         }
     }
 }
