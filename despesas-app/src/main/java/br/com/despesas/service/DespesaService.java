@@ -1,6 +1,7 @@
 package br.com.despesas.service;
 
 import br.com.despesas.model.Despesa;
+import br.com.despesas.model.enums.Categoria;
 import br.com.despesas.repository.DespesaRepository;
 import br.com.despesas.to.DespesaBuscaTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,13 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
+
+import static java.time.temporal.TemporalAdjusters.firstDayOfMonth;
+import static java.time.temporal.TemporalAdjusters.lastDayOfMonth;
 
 @Service
 public class DespesaService {
@@ -46,5 +53,11 @@ public class DespesaService {
 
     public Despesa findById(Long id) {
         return despesaRepository.findOne(id);
+    }
+
+    public Map<Categoria, BigDecimal> findTotalMesAtualByCategoria() {
+        final LocalDate startDate = LocalDate.now().with(firstDayOfMonth());
+        final LocalDate finishDate = startDate.with(lastDayOfMonth());
+        return despesaRepository.findTotalByCategoria(startDate, finishDate);
     }
 }

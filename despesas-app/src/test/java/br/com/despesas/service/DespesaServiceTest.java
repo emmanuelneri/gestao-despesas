@@ -16,6 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -229,5 +230,37 @@ public class DespesaServiceTest {
         assertThat(depesaPorId, allOf(
                 hasProperty("id", is(despesa.getId())),
                 hasProperty("descricao", is("Conta de Luz"))));
+    }
+
+    @Test
+    public void findTotalByCategoria() {
+        despesaService.save(Despesa.builder()
+                .data(LocalDate.now())
+                .valor(BigDecimal.valueOf(70))
+                .descricao("Conta de Luz")
+                .categoria(Categoria.MORARIA)
+                .status(StatusDespesa.PENDENTE)
+                .build());
+
+        despesaService.save(Despesa.builder()
+                .data(LocalDate.now())
+                .valor(BigDecimal.TEN)
+                .descricao("Conta de Agua")
+                .categoria(Categoria.MORARIA)
+                .status(StatusDespesa.PAGO)
+                .build());
+
+        despesaService.save(Despesa.builder()
+                .data(LocalDate.now())
+                .valor(BigDecimal.valueOf(100))
+                .descricao("Mercado")
+                .categoria(Categoria.ALIMENTACAO)
+                .status(StatusDespesa.PENDENTE)
+                .build());
+
+
+        final Map<Categoria, BigDecimal> totalMesAtualByCategoria = despesaService.findTotalMesAtualByCategoria();
+        assertEquals(BigDecimal.valueOf(80), totalMesAtualByCategoria.get(Categoria.MORARIA));
+        assertEquals(BigDecimal.valueOf(100), totalMesAtualByCategoria.get(Categoria.ALIMENTACAO));
     }
 }
