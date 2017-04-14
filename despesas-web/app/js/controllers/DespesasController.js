@@ -34,7 +34,7 @@ function DespesasController($scope, DespesaService, CategoriaService, StatusDesp
 
     function getCurrentPage() {
     	var pagination = stState ? stState.pagination : {};
-        return pagination.start ? Math.floor(pagination.start / $scope.pageRequest.size) : 0;
+        return pagination.start ? Math.floor(pagination.start / $scope.search.quantidade) : 0;
     }
 
     $scope.getData = function (tableState) {
