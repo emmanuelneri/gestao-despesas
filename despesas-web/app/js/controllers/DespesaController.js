@@ -4,6 +4,7 @@ function DespesaController($scope, $routeParams, DespesaService, CategoriaServic
 
 	$scope.statusList = [];
 	$scope.categorias = [];
+	$scope.alerts = [];
 
 	if ($routeParams.despesaId) {
 		DespesaService.findById($routeParams.despesaId)
@@ -12,16 +13,28 @@ function DespesaController($scope, $routeParams, DespesaService, CategoriaServic
 				despesa.data = new Date(despesa.data[0], despesa.data[1]-1, despesa.data[2]);
 				$scope.despesa = despesa;
 			}, function(erro) {
-				console.log('Erro ao buscar despesa');
+				$scope.alerts.push({
+					type: 'danger',
+					msg: 'Não foi possível buscar a despesa para a edição. Contate o administrador do sistema!'
+				})
+				console.log('Erro ao buscar despesa: ' + error);
 			});
 	}
 
 	$scope.salvar = function() {
 		DespesaService.save($scope.despesa)
 			.then(function(despesa) {
-
+				$scope.despesa = {};
+				$scope.alerts.push({
+					type: 'success',
+					msg: 'Despesa salva com sucesso!'
+				})
 			}, function(error) {
-				console.log('Erro ao salvar despesa' + error);
+				$scope.alerts.push({
+					type: 'danger',
+					msg: 'Não foi possível salvar a despesa. Contate o administrador do sistema!'
+				})
+				console.log('Erro ao salvar despesa:' + error);
 			});
 	}
 
@@ -55,6 +68,10 @@ function DespesaController($scope, $routeParams, DespesaService, CategoriaServic
 		carregarListaStatus();
         inicializarDespesa();
 	}
+
+	$scope.closeAlert = function(index) {
+		$scope.alerts.splice(index, 1);
+	};
 
 	inicializar();
 }
