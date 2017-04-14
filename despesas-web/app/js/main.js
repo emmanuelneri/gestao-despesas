@@ -1,4 +1,4 @@
-angular.module('gestao-despesas', ['ngRoute', 'ngResource', 'ng-currency', 'ui.mask', 'smart-table'])
+angular.module('gestao-despesas', ['ngRoute', 'ngResource', 'ng-currency', 'ui.mask', 'smart-table', 'ui.bootstrap'])
 	.config(function($routeProvider, $locationProvider) {
 		$locationProvider.hashPrefix('');
 
