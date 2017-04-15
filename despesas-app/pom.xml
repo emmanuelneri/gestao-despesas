@@ -17,7 +17,6 @@
         <jackson.version>2.8.1</jackson.version>
         <lombok.version>1.16.10</lombok.version>
         <guava.version>19.0</guava.version>
-        <testng.version>6.9.10</testng.version>
         <hamcrest.version>1.3</hamcrest.version>
     </properties>
 
@@ -47,11 +46,6 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>${testng.version}</version>
-        </dependency>
 
         <dependency>
             <groupId>org.hamcrest</groupId>
@@ -139,6 +133,4 @@
             </plugin>
         </plugins>
     </build>
-
-
 </project>
