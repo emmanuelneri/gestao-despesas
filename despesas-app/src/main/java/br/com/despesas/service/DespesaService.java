@@ -72,4 +72,9 @@ public class DespesaService {
         final LocalDate finishDate = startDate.with(lastDayOfMonth());
         return despesaRepository.findTotalByDatas(startDate, finishDate);
     }
+
+    public List<Despesa> findProximasCincoDespesasAVencer() {
+        return despesaRepository.findDespesasAVencerAPartirDaData(LocalDate.now(), new PageRequest(0, 5));
+    }
+
 }

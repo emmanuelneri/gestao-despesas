@@ -295,4 +295,73 @@ public class DespesaServiceTest {
         final BigDecimal totalAPagarMesAtual = despesaService.findTotalAPagarMesAtual();
         assertEquals(BigDecimal.valueOf(170), totalAPagarMesAtual);
     }
+
+    @Test
+    public void findDespesasAVencerAPartirDaData() {
+        despesaService.save(Despesa.builder()
+                .data(LocalDate.now())
+                .valor(BigDecimal.valueOf(70))
+                .descricao("Conta de Luz")
+                .categoria(Categoria.MORARIA)
+                .paga(false)
+                .build());
+
+        despesaService.save(Despesa.builder()
+                .data(LocalDate.now())
+                .valor(BigDecimal.TEN)
+                .descricao("Conta de Agua")
+                .categoria(Categoria.MORARIA)
+                .paga(false)
+                .build());
+
+        despesaService.save(Despesa.builder()
+                .data(LocalDate.now())
+                .valor(BigDecimal.valueOf(100))
+                .descricao("Mercado")
+                .categoria(Categoria.ALIMENTACAO)
+                .paga(false)
+                .build());
+
+        despesaService.save(Despesa.builder()
+                .data(LocalDate.now())
+                .valor(BigDecimal.valueOf(20))
+                .descricao("Restaurante")
+                .categoria(Categoria.ALIMENTACAO)
+                .paga(false)
+                .build());
+
+        despesaService.save(Despesa.builder()
+                .data(LocalDate.now())
+                .valor(BigDecimal.valueOf(200))
+                .descricao("Médico")
+                .categoria(Categoria.SAUDE)
+                .paga(false)
+                .build());
+
+        despesaService.save(Despesa.builder()
+                .data(LocalDate.now().plusDays(10))
+                .valor(BigDecimal.valueOf(1000))
+                .descricao("Compras americanas.com")
+                .categoria(Categoria.OUTROS)
+                .paga(false)
+                .build());
+
+        despesaService.save(Despesa.builder()
+                .data(LocalDate.now().plusMonths(1))
+                .valor(BigDecimal.valueOf(900))
+                .descricao("Faculdade")
+                .categoria(Categoria.EDUCACAO)
+                .paga(false)
+                .build());
+
+        final List<Despesa> despesas = despesaService.findProximasCincoDespesasAVencer();
+        assertEquals(5, despesas.size());
+        assertThat(despesas, contains(
+                allOf(hasProperty("descricao",          is("Conta de Luz"))),
+                allOf(hasProperty("descricao",          is("Conta de Agua"))),
+                allOf(hasProperty("descricao",          is("Mercado"))),
+                allOf(hasProperty("descricao",          is("Restaurante"))),
+                allOf(hasProperty("descricao",          is("Médico")))
+        ));
+    }
 }
