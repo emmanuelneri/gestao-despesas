@@ -55,13 +55,11 @@
 							</div>
 						</div>
 
-						<div class="col-md-6">
+						<div class="col-md-4">
 							<div class="form-group">
-								<label for="status">Status:</label>
-								<select id="status" ng-model="search.status" ng-options="status.status as status.descricao for status in listaStatus" class="form-control">
-									<option value="">Selecione</option>
-								</select>
-							</div>	
+								<label for="status">Status:</label><br>
+								<toggle ng-model="search.paga" on="Paga" off="Pendente" onstyle="btn-success" offstyle="btn-danger"/>
+							</div>
 						</div>
 					</div>
 
@@ -97,7 +95,12 @@
 				<td>{{despesa.descricao}}</td>
 				<td>{{despesa.data | date:'dd/MM/yyyy'}}</td>
 				<td>{{despesa.valor}}</td>
-				<td>{{despesa.status}}</td>
+				<td>
+					<div ng-class="{'disabled': despesa.paga}">
+<toggle ng-model="despesa.paga" ng-change="pagar(despesa.id)" on="Paga" off="Pendente" onstyle="btn-success" offstyle="btn-danger" />
+					</div>
+					
+				</td>
 				<td class="text-center">
 					<a href="#/despesa/{{despesa.id}}" class="btn btn-info" data-toggle="tooltip" title="Editar">
 						<i class="fa fa-edit"></i>

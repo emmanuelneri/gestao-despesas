@@ -6,7 +6,8 @@ function DespesasController($scope, DespesaService, CategoriaService, StatusDesp
 
 	$scope.search = {
         pagina: 0,
-        quantidade: 10
+        quantidade: 10,
+        paga: null
     };
 
 	$scope.filtrar = function() {
@@ -25,7 +26,7 @@ function DespesasController($scope, DespesaService, CategoriaService, StatusDesp
     function normalizarData(despesas) {
     	var despesasComDataNormalizada = [];
     	despesas.forEach(function(despesa) {
-    		despesa.data = new Date(despesa.data[0], despesa.data[1]-1, despesa.data[2])
+    		despesa.data = new Date(despesa.data[0], despesa.data[1]-1, despesa.data[2]);
     		despesasComDataNormalizada.push(despesa);
     	})
 
@@ -47,9 +48,9 @@ function DespesasController($scope, DespesaService, CategoriaService, StatusDesp
 
 	$scope.remover = function(despesa) {
 		DespesaService.delete(despesa.id).then(function(response) {
-			buscarDespesas();
+			$scope.filtrar();
 		}, function(error) {
-			console.log('Erro ao remover despesa');
+			console.log('Erro ao remover despesa' + error);
 		})
 	}
 
@@ -74,6 +75,15 @@ function DespesasController($scope, DespesaService, CategoriaService, StatusDesp
 	function inicializar() {
 		carregarListaCategorias();
 		carregarListaStatus();
+	}
+
+	$scope.pagar = function(idDespesa) {
+		DespesaService.pagar(idDespesa)
+			.then(function(response) {
+				console.log('Despesa paga com sucesso');
+			}, function(error) {
+				console.log('Erro ao pagar despesa' + error);
+			});
 	}
 
 	inicializar();
