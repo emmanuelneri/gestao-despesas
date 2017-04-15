@@ -2,7 +2,6 @@ package br.com.despesas.model;
 
 import br.com.despesas.exception.BusinessException;
 import br.com.despesas.model.enums.Categoria;
-import br.com.despesas.model.enums.StatusDespesa;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -53,13 +52,18 @@ public class Despesa {
     @Enumerated(EnumType.STRING)
     private Categoria categoria;
 
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    private StatusDespesa status = StatusDespesa.PENDENTE;
+    private boolean paga = false;
 
     public void validarValor() {
         if(valor == null || valor.compareTo(BigDecimal.ZERO) == 0) {
             throw new BusinessException("Valor da despesa deve ser maior que zero");
         }
+    }
+
+    public void pagar() {
+        if (paga) {
+            throw new BusinessException("A despesa já está paga");
+        }
+        this.paga = true;
     }
 }

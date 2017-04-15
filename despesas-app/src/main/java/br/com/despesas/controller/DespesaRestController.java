@@ -42,4 +42,13 @@ public class DespesaRestController {
         despesaService.delete(id);
         return ResponseEntity.ok().build();
     }
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/pagar/{id}")
+    public ResponseEntity<Despesa> pagar(@PathVariable("id") Long id) {
+        Despesa despesa = despesaService.findById(id);
+        despesa.pagar();
+        despesaService.save(despesa);
+
+        return ResponseEntity.ok(despesa);
+    }
 }

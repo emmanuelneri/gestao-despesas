@@ -22,6 +22,10 @@ function DespesaService($http, AppService) {
 
         search: function(search) {
             return $http.post(AppService.HOST() + '/despesas/search', search);
+        },
+
+        pagar: function(id) {
+            return $http.put(AppService.HOST() + '/despesas/pagar/' + id);  
         }
     }
 }
