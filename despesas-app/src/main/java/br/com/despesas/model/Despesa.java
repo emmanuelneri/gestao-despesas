@@ -16,6 +16,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -26,6 +28,9 @@ import java.time.LocalDate;
 
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(name = "despesa_uk", columnNames = {"data", "descricao", "categoria"}))
+@NamedQueries(value = {
+        @NamedQuery(name="Despesa.findTotalByDatas", query = "select sum(d.valor) from Despesa d where d.paga = false and d.data between ?1 and ?2")
+})
 @Builder
 @EqualsAndHashCode(of = {"data", "descricao", "categoria"})
 @NoArgsConstructor

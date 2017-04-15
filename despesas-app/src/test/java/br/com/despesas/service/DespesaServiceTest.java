@@ -264,4 +264,35 @@ public class DespesaServiceTest {
         assertEquals(BigDecimal.valueOf(80), totalMesAtualByCategoria.get(Categoria.MORARIA));
         assertEquals(BigDecimal.valueOf(100), totalMesAtualByCategoria.get(Categoria.ALIMENTACAO));
     }
+
+    @Test
+    public void findTotalAPagarMesAtual() {
+        despesaService.save(Despesa.builder()
+                .data(LocalDate.now())
+                .valor(BigDecimal.valueOf(70))
+                .descricao("Conta de Luz")
+                .categoria(Categoria.MORARIA)
+                .paga(false)
+                .build());
+
+        despesaService.save(Despesa.builder()
+                .data(LocalDate.now())
+                .valor(BigDecimal.TEN)
+                .descricao("Conta de Agua")
+                .categoria(Categoria.MORARIA)
+                .paga(true)
+                .build());
+
+        despesaService.save(Despesa.builder()
+                .data(LocalDate.now())
+                .valor(BigDecimal.valueOf(100))
+                .descricao("Mercado")
+                .categoria(Categoria.ALIMENTACAO)
+                .paga(false)
+                .build());
+
+
+        final BigDecimal totalAPagarMesAtual = despesaService.findTotalAPagarMesAtual();
+        assertEquals(BigDecimal.valueOf(170), totalAPagarMesAtual);
+    }
 }

@@ -18,10 +18,16 @@ public class DashBoardDespesaRestController {
     @Autowired
     private DespesaService despesaService;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/categoria/total")
+    @RequestMapping(method = RequestMethod.GET, value = "/total/categoria")
     public ResponseEntity findTotalMesAtualByCategoria() {
         final Map<Categoria, BigDecimal> totalMesAtualByCategoria = despesaService.findTotalMesAtualByCategoria();
         return ResponseEntity.ok(totalMesAtualByCategoria);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/total/pagar")
+    public ResponseEntity findTotalAPagarMesAtual() {
+        final BigDecimal totalAPagar = despesaService.findTotalAPagarMesAtual();
+        return ResponseEntity.ok(totalAPagar);
     }
 
 }

@@ -66,4 +66,10 @@ public class DespesaService {
         despesa.pagar();
         return save(despesa);
     }
+
+    public BigDecimal findTotalAPagarMesAtual() {
+        final LocalDate startDate = LocalDate.now().with(firstDayOfMonth());
+        final LocalDate finishDate = startDate.with(lastDayOfMonth());
+        return despesaRepository.findTotalByDatas(startDate, finishDate);
+    }
 }
