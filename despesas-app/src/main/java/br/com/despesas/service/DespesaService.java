@@ -60,4 +60,10 @@ public class DespesaService {
         final LocalDate finishDate = startDate.with(lastDayOfMonth());
         return despesaRepository.findTotalByCategoria(startDate, finishDate);
     }
+
+    @Transactional
+    public Despesa pagar(Despesa despesa) {
+        despesa.pagar();
+        return save(despesa);
+    }
 }

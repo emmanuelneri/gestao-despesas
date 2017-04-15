@@ -45,10 +45,8 @@ public class DespesaRestController {
 
     @RequestMapping(method = RequestMethod.PUT, value = "/pagar/{id}")
     public ResponseEntity<Despesa> pagar(@PathVariable("id") Long id) {
-        Despesa despesa = despesaService.findById(id);
-        despesa.pagar();
-        despesaService.save(despesa);
-
-        return ResponseEntity.ok(despesa);
+        final Despesa despesa = despesaService.findById(id);
+        final Despesa despesaPaga = despesaService.pagar(despesa);
+        return ResponseEntity.ok(despesaPaga);
     }
 }
