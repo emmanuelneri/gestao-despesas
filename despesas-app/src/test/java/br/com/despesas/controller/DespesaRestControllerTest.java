@@ -75,7 +75,7 @@ public class DespesaRestControllerTest {
         given(despesaService.findAll(any(DespesaBuscaTO.class)))
                 .willReturn(pageDespesa);
 
-        mockMvc.perform(post("/despesas/busca")
+        mockMvc.perform(post("/despesas/search")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsBytes(buscaTO))
                 .accept(MediaType.APPLICATION_JSON))
