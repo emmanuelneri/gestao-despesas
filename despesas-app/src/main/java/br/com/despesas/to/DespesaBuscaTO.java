@@ -2,7 +2,6 @@ package br.com.despesas.to;
 
 import br.com.despesas.model.QDespesa;
 import br.com.despesas.model.enums.Categoria;
-import br.com.despesas.model.enums.StatusDespesa;
 import com.google.common.base.Strings;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
@@ -22,7 +21,7 @@ public class DespesaBuscaTO {
     private LocalDate dataFinal;
     private String descricao;
     private Categoria categoria;
-    private StatusDespesa status;
+    private Boolean paga;
 
     private int pagina;
     private int quantidade;
@@ -47,8 +46,8 @@ public class DespesaBuscaTO {
             predicate.and(qDespesa.categoria.eq(categoria));
         }
 
-        if(status != null) {
-            predicate.and(qDespesa.status.eq(status));
+        if(paga != null) {
+            predicate.and(qDespesa.paga.eq(paga));
         }
 
         return predicate;

@@ -1,8 +1,7 @@
 package br.com.despesas.service;
 
-import br.com.despesas.model.enums.Categoria;
 import br.com.despesas.model.Despesa;
-import br.com.despesas.model.enums.StatusDespesa;
+import br.com.despesas.model.enums.Categoria;
 import br.com.despesas.to.DespesaBuscaTO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +18,9 @@ import java.util.List;
 import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.is;
 import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -42,7 +43,7 @@ public class DespesaServiceTest {
                 .valor(BigDecimal.TEN)
                 .descricao("Conta de Luz")
                 .categoria(Categoria.MORARIA)
-                .status(StatusDespesa.PENDENTE)
+                .paga(false)
                 .build();
         despesaService.save(despesa);
         assertNotNull(despesa.getId());
@@ -61,7 +62,7 @@ public class DespesaServiceTest {
                 .valor(BigDecimal.TEN)
                 .descricao("Conta de Luz")
                 .categoria(Categoria.MORARIA)
-                .status(StatusDespesa.PENDENTE)
+                .paga(false)
                 .build();
         despesaService.save(despesa);
         assertNotNull(despesa.getId());
@@ -83,7 +84,7 @@ public class DespesaServiceTest {
                 .valor(BigDecimal.TEN)
                 .descricao("Conta de Luz")
                 .categoria(Categoria.MORARIA)
-                .status(StatusDespesa.PENDENTE)
+                .paga(false)
                 .build();
         despesaService.save(despesa);
 
@@ -101,7 +102,7 @@ public class DespesaServiceTest {
                 .valor(BigDecimal.valueOf(70))
                 .descricao("Conta de Luz")
                 .categoria(Categoria.MORARIA)
-                .status(StatusDespesa.PENDENTE)
+                .paga(false)
                 .build());
 
         despesaService.save(Despesa.builder()
@@ -109,7 +110,7 @@ public class DespesaServiceTest {
                 .valor(BigDecimal.TEN)
                 .descricao("Conta de Agua")
                 .categoria(Categoria.MORARIA)
-                .status(StatusDespesa.PAGO)
+                .paga(true)
                 .build());
 
         despesaService.save(Despesa.builder()
@@ -117,7 +118,7 @@ public class DespesaServiceTest {
                 .valor(BigDecimal.valueOf(100))
                 .descricao("Mercado")
                 .categoria(Categoria.ALIMENTACAO)
-                .status(StatusDespesa.PENDENTE)
+                .paga(false)
                 .build());
 
         final DespesaBuscaTO buscaTO = DespesaBuscaTO.builder()
@@ -146,7 +147,7 @@ public class DespesaServiceTest {
                 .valor(BigDecimal.valueOf(70))
                 .descricao("Conta de Luz")
                 .categoria(Categoria.MORARIA)
-                .status(StatusDespesa.PENDENTE)
+                .paga(false)
                 .build());
 
         despesaService.save(Despesa.builder()
@@ -154,7 +155,7 @@ public class DespesaServiceTest {
                 .valor(BigDecimal.TEN)
                 .descricao("Conta de Agua")
                 .categoria(Categoria.MORARIA)
-                .status(StatusDespesa.PAGO)
+                .paga(true)
                 .build());
 
         final DespesaBuscaTO buscaTO = DespesaBuscaTO.builder()
@@ -179,7 +180,7 @@ public class DespesaServiceTest {
                 .valor(BigDecimal.valueOf(70))
                 .descricao("Conta de Luz")
                 .categoria(Categoria.MORARIA)
-                .status(StatusDespesa.PENDENTE)
+                .paga(false)
                 .build());
 
         despesaService.save(Despesa.builder()
@@ -187,7 +188,7 @@ public class DespesaServiceTest {
                 .valor(BigDecimal.TEN)
                 .descricao("Conta de Agua")
                 .categoria(Categoria.MORARIA)
-                .status(StatusDespesa.PAGO)
+                .paga(true)
                 .build());
 
         despesaService.save(Despesa.builder()
@@ -195,7 +196,7 @@ public class DespesaServiceTest {
                 .valor(BigDecimal.valueOf(100))
                 .descricao("Mercado")
                 .categoria(Categoria.ALIMENTACAO)
-                .status(StatusDespesa.PENDENTE)
+                .paga(false)
                 .build());
 
         final DespesaBuscaTO buscaTO = DespesaBuscaTO.builder()
@@ -222,7 +223,7 @@ public class DespesaServiceTest {
                 .valor(BigDecimal.TEN)
                 .descricao("Conta de Luz")
                 .categoria(Categoria.MORARIA)
-                .status(StatusDespesa.PENDENTE)
+                .paga(false)
                 .build();
         despesaService.save(despesa);
 
@@ -239,23 +240,23 @@ public class DespesaServiceTest {
                 .valor(BigDecimal.valueOf(70))
                 .descricao("Conta de Luz")
                 .categoria(Categoria.MORARIA)
-                .status(StatusDespesa.PENDENTE)
+                .paga(false)
                 .build());
 
         despesaService.save(Despesa.builder()
-                .data(LocalDate.now())
-                .valor(BigDecimal.TEN)
-                .descricao("Conta de Agua")
-                .categoria(Categoria.MORARIA)
-                .status(StatusDespesa.PAGO)
-                .build());
+            .data(LocalDate.now())
+            .valor(BigDecimal.TEN)
+            .descricao("Conta de Agua")
+            .categoria(Categoria.MORARIA)
+            .paga(true)
+            .build());
 
         despesaService.save(Despesa.builder()
                 .data(LocalDate.now())
                 .valor(BigDecimal.valueOf(100))
                 .descricao("Mercado")
                 .categoria(Categoria.ALIMENTACAO)
-                .status(StatusDespesa.PENDENTE)
+                .paga(false)
                 .build());
 
 
