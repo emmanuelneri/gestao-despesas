@@ -73,10 +73,10 @@
         </thead>
         <tbody>
 	        <tr ng-repeat="despesa in displayedCollection">
-				<td>{{despesa.categoria}}</td>
+				<td>{{despesa.descricaCategoria}}</td>
 				<td>{{despesa.descricao}}</td>
-				<td>{{despesa.data | date:'dd/MM/yyyy'}}</td>
-				<td>{{despesa.valor}}</td>
+				<td>{{despesa.dataFormatada}}</td>
+				<td>{{despesa.valor | monetario}}</td>
 				<td>
 					<div ng-class="{'disabled': despesa.paga}">
 <toggle ng-model="despesa.paga" ng-change="pagar(despesa.id)" on="Paga" off="Pendente" onstyle="btn-success" offstyle="btn-danger" />
@@ -89,7 +89,7 @@
 					</a>
 					<a class="btn btn-danger" ng-click="remover(despesa)" data-toggle="tooltip" title="Apagar">
 						<i class="fa fa-trash"></i>
-					</button>
+					</a>
 				</td>
 	        </tr>
         </tbody>
