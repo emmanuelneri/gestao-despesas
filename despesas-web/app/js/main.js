@@ -2,8 +2,7 @@ angular.module('gestao-despesas', ['ngRoute', 'ngResource', 'ng-currency', 'ui.m
 	.config(function($routeProvider, $locationProvider) {
 		$locationProvider.hashPrefix('');
 
-		$routeProvider
-		.when('/despesas', {
+		$routeProvider.when('/despesas', {
 			templateUrl: 'html/despesas.html',
 			controller: 'DespesasController'
 		})
