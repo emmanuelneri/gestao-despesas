@@ -4,16 +4,19 @@
 		<meta name="viewport" content="width=device-width">
 		<meta charset="UTF-8">
 	
+		<!-- build:css css/index.min.css -->
 		<link rel="stylesheet" type="text/css" href="/css/app.css">
 		<link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap-theme.css">
-		<link rel="stylesheet" type="text/css" href="/lib/components-font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="/lib/components-font-awesome/css/font-awesome.css">
 		<link rel="stylesheet" type="text/css" href="/lib/angular-bootstrap-toggle/dist/angular-bootstrap-toggle.css">
+		<!-- endbuild -->
 
 	</head>
 	<body class="container">
 		<div ng-view></div>
 
+		<!-- build:js js/index.min.js -->
 		<script src="/lib/angular/angular.js"></script>
 		<script src="/lib/angular-i18n/angular-locale_pt-br.js"></script>
 		<script src="/lib/angular-route/angular-route.js"></script>
@@ -25,12 +28,12 @@
         <script src="/lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
         <script src="/lib/angular-bootstrap-toggle/dist/angular-bootstrap-toggle.js"></script>
 		<script src="/js/main.js"></script>
-
 		<script src="/js/services/AppService.js"></script>
 		<script src="/js/services/DespesaService.js"></script>
 		<script src="/js/controllers/DespesasController.js"></script>
 		<script src="/js/controllers/DespesaController.js"></script>
 		<script src="/js/services/CategoriaService.js"></script>
 		<script src="/js/services/StatusDespesaService.js"></script>
+		<!-- endbuild -->
 	</body>
 </html>
