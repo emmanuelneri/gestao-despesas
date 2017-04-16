@@ -4,7 +4,6 @@ function DespesaController($scope, $routeParams, DespesaService, CategoriaServic
 
 	$scope.statusList = [];
 	$scope.categorias = [];
-	$scope.alerts = [];
 
 	if ($routeParams.despesaId) {
 		DespesaService.findById($routeParams.despesaId)
@@ -22,6 +21,7 @@ function DespesaController($scope, $routeParams, DespesaService, CategoriaServic
 	}
 
 	$scope.salvar = function() {
+        inicializarAlerts();
 		DespesaService.save($scope.despesa)
 			.then(function(despesa) {
 				$scope.despesa = {};
@@ -59,7 +59,8 @@ function DespesaController($scope, $routeParams, DespesaService, CategoriaServic
 
 	function inicializarDespesa() {
         $scope.despesa = {
-            status: 'PENDENTE'
+            status: 'PENDENTE',
+			data: new Date()
         };
     }
 
@@ -67,11 +68,16 @@ function DespesaController($scope, $routeParams, DespesaService, CategoriaServic
 		carregarListaCategorias();
 		carregarListaStatus();
         inicializarDespesa();
+        inicializarAlerts();
 	}
 
 	$scope.closeAlert = function(index) {
 		$scope.alerts.splice(index, 1);
-	};
+	}
+
+    function inicializarAlerts() {
+        $scope.alerts = [];
+    };
 
 	inicializar();
 }
