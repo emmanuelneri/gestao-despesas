@@ -13,9 +13,12 @@ import java.util.List;
 
 public interface DespesaRepository extends JpaRepository<Despesa, Long>, QueryDslPredicateExecutor<Despesa>, DespesaRepositoryCustom {
 
-    BigDecimal findTotalByDatas(LocalDate startDate, LocalDate finishDate);
+    BigDecimal findTotalByDatas(boolean pago, LocalDate startDate, LocalDate finishDate);
 
     @Query("select d from Despesa d where d.paga = false and d.data >= :#{#date} order by d.data, d.id")
     List<Despesa> findDespesasAVencerAPartirDaData(@Param("date") LocalDate date, Pageable pageable);
+
+    @Query("select d from Despesa d where d.paga = false and d.data < CURRENT_DATE order by d.data, d.id")
+    List<Despesa> findDespesaAtrasadas();
 
 }

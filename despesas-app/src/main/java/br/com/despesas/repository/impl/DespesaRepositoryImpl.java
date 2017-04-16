@@ -33,4 +33,16 @@ public class DespesaRepositoryImpl implements DespesaRepositoryCustom {
 
     }
 
+    public Map<Boolean, BigDecimal> findTotalByPago(LocalDate startDate, LocalDate finishDate) {
+        final QDespesa qDespesa = QDespesa.despesa;
+
+        @SuppressWarnings("unchecked")
+        final JPAQuery<Despesa> query = new JPAQuery(entityManager);
+
+        return query
+                .from(qDespesa)
+                .where(qDespesa.data.between(startDate, finishDate))
+                .transform(groupBy(qDespesa.paga).as(sum(qDespesa.valor)));
+
+    }
 }

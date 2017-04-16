@@ -27,3 +27,8 @@ tr th:last-child {
 .disabled {
 	pointer-events: none;
 }
+
+.valor-panel {
+	font-weight: bold;
+	font-size: x-large;
+}

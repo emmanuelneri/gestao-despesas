@@ -11,8 +11,23 @@
 		<link rel="stylesheet" type="text/css" href="/lib/angular-bootstrap-toggle/dist/angular-bootstrap-toggle.css">
 
 	</head>
+
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand"  href="/">Gestão Despesa</a>
+			</div>
+
+			<ul class="nav navbar-nav">
+				<li><a href="#/despesa">Nova despesa</a></li>
+				<li><a href="#/despesas">Lista de despesas</a></li>
+			</ul>
+		</div>
+	</nav>
+
+
 	<body class="container">
-		<div ng-view></div>
+	<div ng-view></div>
 
 		<script src="/lib/angular/angular.js"></script>
 		<script src="/lib/angular-i18n/angular-locale_pt-br.js"></script>
@@ -24,13 +39,18 @@
 		<script src="/lib/angular-bootstrap/ui-bootstrap.js"></script>
         <script src="/lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
         <script src="/lib/angular-bootstrap-toggle/dist/angular-bootstrap-toggle.js"></script>
+        <script src="/lib/chart.js/dist/Chart.min.js"></script>
+        <script src="/lib/angular-chart.js/dist/angular-chart.min.js"></script>
 		<script src="/js/main.js"></script>
+		<script src="/js/filter.js"></script>
 
 		<script src="/js/services/AppService.js"></script>
 		<script src="/js/services/DespesaService.js"></script>
 		<script src="/js/controllers/DespesasController.js"></script>
 		<script src="/js/controllers/DespesaController.js"></script>
+		<script src="/js/controllers/DashboardController.js"></script>
 		<script src="/js/services/CategoriaService.js"></script>
 		<script src="/js/services/StatusDespesaService.js"></script>
+		<script src="/js/services/DashBoardService.js"></script>
 	</body>
 </html>

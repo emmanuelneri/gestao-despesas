@@ -15,6 +15,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import static java.time.temporal.TemporalAdjusters.firstDayOfMonth;
 import static java.time.temporal.TemporalAdjusters.lastDayOfMonth;
@@ -68,13 +69,31 @@ public class DespesaService {
     }
 
     public BigDecimal findTotalAPagarMesAtual() {
+        return findTotalAPagarMesAtual(false);
+    }
+
+    public BigDecimal findTotalPagoMesAtual() {
+        return findTotalAPagarMesAtual(true);
+    }
+
+    private BigDecimal findTotalAPagarMesAtual(boolean pago) {
         final LocalDate startDate = LocalDate.now().with(firstDayOfMonth());
         final LocalDate finishDate = startDate.with(lastDayOfMonth());
-        return despesaRepository.findTotalByDatas(startDate, finishDate);
+        final BigDecimal valor = despesaRepository.findTotalByDatas(pago, startDate, finishDate);
+        return Optional.ofNullable(valor).orElse(BigDecimal.ZERO);
     }
 
     public List<Despesa> findProximasCincoDespesasAVencer() {
         return despesaRepository.findDespesasAVencerAPartirDaData(LocalDate.now(), new PageRequest(0, 5));
     }
 
+    public List<Despesa> findDespesaAtrasadas() {
+        return despesaRepository.findDespesaAtrasadas();
+    }
+
+    public Map<Boolean, BigDecimal> findTotalByPago() {
+        final LocalDate startDate = LocalDate.now().with(firstDayOfMonth());
+        final LocalDate finishDate = startDate.with(lastDayOfMonth());
+        return despesaRepository.findTotalByPago(startDate, finishDate);
+    }
 }

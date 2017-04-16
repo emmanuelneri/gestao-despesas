@@ -266,7 +266,7 @@ public class DespesaServiceTest {
     }
 
     @Test
-    public void findTotalAPagarMesAtual() {
+    public void findTotalMesAtual() {
         despesaService.save(Despesa.builder()
                 .data(LocalDate.now())
                 .valor(BigDecimal.valueOf(70))
@@ -291,9 +291,11 @@ public class DespesaServiceTest {
                 .paga(false)
                 .build());
 
-
         final BigDecimal totalAPagarMesAtual = despesaService.findTotalAPagarMesAtual();
         assertEquals(BigDecimal.valueOf(170), totalAPagarMesAtual);
+
+        final BigDecimal totalPago = despesaService.findTotalPagoMesAtual();
+        assertEquals(BigDecimal.TEN, totalPago);
     }
 
     @Test

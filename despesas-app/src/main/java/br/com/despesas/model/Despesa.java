@@ -2,6 +2,7 @@ package br.com.despesas.model;
 
 import br.com.despesas.exception.BusinessException;
 import br.com.despesas.model.enums.Categoria;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -29,7 +30,7 @@ import java.time.LocalDate;
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(name = "despesa_uk", columnNames = {"data", "descricao", "categoria"}))
 @NamedQueries(value = {
-        @NamedQuery(name="Despesa.findTotalByDatas", query = "select sum(d.valor) from Despesa d where d.paga = false and d.data between ?1 and ?2")
+        @NamedQuery(name="Despesa.findTotalByDatas", query = "select sum(d.valor) from Despesa d where d.paga = ?1 and d.data between ?2 and ?3")
 })
 @Builder
 @EqualsAndHashCode(of = {"data", "descricao", "categoria"})
@@ -70,5 +71,14 @@ public class Despesa {
             throw new BusinessException("A despesa já está paga");
         }
         this.paga = true;
+    }
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    public LocalDate getDataFormatada() {
+        return data;
+    }
+
+    public String getDescricaCategoria() {
+        return categoria.getDescricao();
     }
 }

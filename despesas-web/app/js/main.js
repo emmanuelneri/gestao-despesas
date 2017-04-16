@@ -1,4 +1,4 @@
-angular.module('gestao-despesas', ['ngRoute', 'ngResource', 'ng-currency', 'ui.mask', 'smart-table', 'ui.bootstrap', 'ui.toggle'])
+angular.module('gestao-despesas', ['ngRoute', 'ngResource', 'ng-currency', 'ui.mask', 'smart-table', 'ui.bootstrap', 'ui.toggle', 'chart.js'])
 	.config(function($routeProvider, $locationProvider) {
 		$locationProvider.hashPrefix('');
 
@@ -12,8 +12,12 @@ angular.module('gestao-despesas', ['ngRoute', 'ngResource', 'ng-currency', 'ui.m
 			controller: 'DespesaController'
 		})
 		.when('/despesa', {
-			templateUrl: 'html/despesa.html',
-			controller: 'DespesaController'
-		})
-		.otherwise({redirectTo: '/despesas'});
+            templateUrl: 'html/despesa.html',
+            controller: 'DespesaController'
+        })
+        .when('/dashboard', {
+        	templateUrl: 'html/dashboard.html',
+            controller: 'DashboardController'
+         })
+		.otherwise({redirectTo: '/dashboard'});
 	});
