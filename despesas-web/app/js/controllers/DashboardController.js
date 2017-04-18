@@ -2,15 +2,6 @@ angular.module('gestao-despesas').controller('DashboardController', ['$scope', '
 
 function DashboardController($scope, DashBoardService) {
 
-    carregarDespesasAVencer();
-    carregarDespesasAtrasadas();
-    carregarTotalAPagar();
-    carregarTotalPago();
-    inicializarGraficoDespesaPorCategoria();
-    carregarGraficoDespesasPorCategoria();
-    carregarGraficoDespesasPorPago();
-
-
     function inicializarGraficoDespesaPorCategoria() {
         $scope.graficoOptions = {legend: {display: true}};
 
@@ -24,7 +15,7 @@ function DashboardController($scope, DashBoardService) {
     function carregarGraficoDespesasPorCategoria() {
         DashBoardService.findTotalMesAtualByCategoria()
             .then(function(response) {
-                if(response.data.length > 0) {
+                if(response.data.length) {
                     response.data.forEach(function(despesa){
                         $scope.labelsCategoria.push(despesa.descricao);
                         $scope.dataCategoria.push(despesa.valor);
@@ -85,4 +76,16 @@ function DashboardController($scope, DashBoardService) {
                 console.log('Erro ao carregar despesas atrasadas');
             });
     }
+    
+    function inicializar() {
+        carregarDespesasAVencer();
+        carregarDespesasAtrasadas();
+        carregarTotalAPagar();
+        carregarTotalPago();
+        inicializarGraficoDespesaPorCategoria();
+        carregarGraficoDespesasPorCategoria();
+        carregarGraficoDespesasPorPago();
+    }
+
+    inicializar();
 }

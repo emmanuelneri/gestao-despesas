@@ -57,8 +57,8 @@ public class DashBoardDespesaRestController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/despesas/atrasadas")
-    public ResponseEntity findDespesaAtrasadas() {
-        final List<Despesa> despesas = despesaService.findDespesaAtrasadas();
+    public ResponseEntity findDespesasAtrasadas() {
+        final List<Despesa> despesas = despesaService.findDespesasAtrasadas();
         return ResponseEntity.ok(despesas);
     }
 

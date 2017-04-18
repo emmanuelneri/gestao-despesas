@@ -20,7 +20,7 @@ public class DespesaRepositoryImpl implements DespesaRepositoryCustom {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public Map<Categoria, BigDecimal> findTotalByCategoria(LocalDate startDate, LocalDate finishDate) {
+    public Map<Categoria, BigDecimal> findTotalByCategoria(LocalDate startDate, LocalDate endDate) {
         final QDespesa qDespesa = QDespesa.despesa;
 
         @SuppressWarnings("unchecked")
@@ -28,12 +28,12 @@ public class DespesaRepositoryImpl implements DespesaRepositoryCustom {
 
         return query
                 .from(qDespesa)
-                .where(qDespesa.data.between(startDate, finishDate))
+                .where(qDespesa.data.between(startDate, endDate))
                 .transform(groupBy(qDespesa.categoria).as(sum(qDespesa.valor)));
 
     }
 
-    public Map<Boolean, BigDecimal> findTotalByPago(LocalDate startDate, LocalDate finishDate) {
+    public Map<Boolean, BigDecimal> findTotalByPago(LocalDate startDate, LocalDate endDate) {
         final QDespesa qDespesa = QDespesa.despesa;
 
         @SuppressWarnings("unchecked")
@@ -41,7 +41,7 @@ public class DespesaRepositoryImpl implements DespesaRepositoryCustom {
 
         return query
                 .from(qDespesa)
-                .where(qDespesa.data.between(startDate, finishDate))
+                .where(qDespesa.data.between(startDate, endDate))
                 .transform(groupBy(qDespesa.paga).as(sum(qDespesa.valor)));
 
     }

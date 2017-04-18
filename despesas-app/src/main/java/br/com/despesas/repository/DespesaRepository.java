@@ -19,6 +19,6 @@ public interface DespesaRepository extends JpaRepository<Despesa, Long>, QueryDs
     List<Despesa> findDespesasAVencerAPartirDaData(@Param("date") LocalDate date, Pageable pageable);
 
     @Query("select d from Despesa d where d.paga = false and d.data < CURRENT_DATE order by d.data, d.id")
-    List<Despesa> findDespesaAtrasadas();
+    List<Despesa> findDespesasAtrasadas();
 
 }

@@ -8,8 +8,8 @@ import java.util.Map;
 
 public interface DespesaRepositoryCustom {
 
-    Map<Categoria, BigDecimal> findTotalByCategoria(LocalDate startDate, LocalDate finishDate);
+    Map<Categoria, BigDecimal> findTotalByCategoria(LocalDate startDate, LocalDate endDate);
 
-    Map<Boolean, BigDecimal> findTotalByPago(LocalDate startDate, LocalDate finishDate);
+    Map<Boolean, BigDecimal> findTotalByPago(LocalDate startDate, LocalDate endDate);
 
 }

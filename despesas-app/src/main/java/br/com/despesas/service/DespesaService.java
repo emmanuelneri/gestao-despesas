@@ -78,8 +78,8 @@ public class DespesaService {
 
     private BigDecimal findTotalAPagarMesAtual(boolean pago) {
         final LocalDate startDate = LocalDate.now().with(firstDayOfMonth());
-        final LocalDate finishDate = startDate.with(lastDayOfMonth());
-        final BigDecimal valor = despesaRepository.findTotalByDatas(pago, startDate, finishDate);
+        final LocalDate endDate = startDate.with(lastDayOfMonth());
+        final BigDecimal valor = despesaRepository.findTotalByDatas(pago, startDate, endDate);
         return Optional.ofNullable(valor).orElse(BigDecimal.ZERO);
     }
 
@@ -87,13 +87,13 @@ public class DespesaService {
         return despesaRepository.findDespesasAVencerAPartirDaData(LocalDate.now(), new PageRequest(0, 5));
     }
 
-    public List<Despesa> findDespesaAtrasadas() {
-        return despesaRepository.findDespesaAtrasadas();
+    public List<Despesa> findDespesasAtrasadas() {
+        return despesaRepository.findDespesasAtrasadas();
     }
 
     public Map<Boolean, BigDecimal> findTotalByPago() {
         final LocalDate startDate = LocalDate.now().with(firstDayOfMonth());
-        final LocalDate finishDate = startDate.with(lastDayOfMonth());
-        return despesaRepository.findTotalByPago(startDate, finishDate);
+        final LocalDate endDate = startDate.with(lastDayOfMonth());
+        return despesaRepository.findTotalByPago(startDate, endDate);
     }
 }
