@@ -3,7 +3,7 @@ angular.module('gestao-despesas').factory('StatusDespesaService', ['$http', 'App
 function StatusDespesaService($http, AppService) {
 	return {
 		findAll: function() {
-			return $http.get(AppService.HOST() + '/despesa/status');
+			return $http.get(AppService.HOST() + '/despesa/status', { cache: true});
 		}
 	}
 }

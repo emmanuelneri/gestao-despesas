@@ -4,7 +4,7 @@ angular.module('gestao-despesas')
 function CategoriaService($http, AppService) {
 	return {
 		findAll: function() {
-			return $http.get(AppService.HOST() + '/categorias');
+			return $http.get(AppService.HOST() + '/categorias', { cache: true});
 		}
 	}
 }
