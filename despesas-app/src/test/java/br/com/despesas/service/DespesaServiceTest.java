@@ -266,7 +266,45 @@ public class DespesaServiceTest {
     }
 
     @Test
-    public void findTotalMesAtual() {
+    public void findTotalPagoMesAtual() {
+        despesaService.save(Despesa.builder()
+                .data(LocalDate.now())
+                .valor(BigDecimal.valueOf(70))
+                .descricao("Conta de Luz")
+                .categoria(Categoria.MORARIA)
+                .paga(false)
+                .build());
+
+        despesaService.save(Despesa.builder()
+                .data(LocalDate.now())
+                .valor(BigDecimal.TEN)
+                .descricao("Conta de Agua")
+                .categoria(Categoria.MORARIA)
+                .paga(true)
+                .build());
+
+        despesaService.save(Despesa.builder()
+                .data(LocalDate.now())
+                .valor(BigDecimal.valueOf(100))
+                .descricao("Mercado")
+                .categoria(Categoria.ALIMENTACAO)
+                .paga(false)
+                .build());
+
+        despesaService.save(Despesa.builder()
+                .data(LocalDate.now())
+                .valor(BigDecimal.valueOf(135))
+                .descricao("Dentista")
+                .categoria(Categoria.SAUDE)
+                .paga(true)
+                .build());
+
+        final BigDecimal totalPago = despesaService.findTotalPagoMesAtual();
+        assertEquals(BigDecimal.valueOf(145), totalPago);
+    }
+
+    @Test
+    public void findTotalAPagarMesAtual() {
         despesaService.save(Despesa.builder()
                 .data(LocalDate.now())
                 .valor(BigDecimal.valueOf(70))
@@ -293,9 +331,6 @@ public class DespesaServiceTest {
 
         final BigDecimal totalAPagarMesAtual = despesaService.findTotalAPagarMesAtual();
         assertEquals(BigDecimal.valueOf(170), totalAPagarMesAtual);
-
-        final BigDecimal totalPago = despesaService.findTotalPagoMesAtual();
-        assertEquals(BigDecimal.TEN, totalPago);
     }
 
     @Test
