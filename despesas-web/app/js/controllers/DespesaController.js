@@ -29,15 +29,20 @@ function DespesaController($scope, $routeParams, DespesaService, CategoriaServic
 					type: 'success',
 					msg: 'Despesa salva com sucesso!'
 				})
-			}, function(error) {
-				$scope.alerts.push({
-					type: 'danger',
-					msg: 'Não foi possível salvar a despesa. Contate o administrador do sistema!'
-				})
-				console.log('Erro ao salvar despesa:' + error);
+			}, function(response) {
+				if(response.data.length) {
+                    response.data.forEach(function(error) {
+                        $scope.alerts.push({ type: 'danger', msg: error.error});
+                    });
+				} else {
+                    $scope.alerts.push({
+                        type: 'danger',
+                        msg: 'Não foi possível salvar a despesa. Contate o administrador do sistema!'
+                    });
+                    console.log('Erro ao salvar despesa:' + response);
+				}
 			});
-	}
-
+	};
 
 	function carregarListaCategorias() {
 		CategoriaService.findAll()
