@@ -84,7 +84,7 @@
 					
 				</td>
 				<td class="text-center">
-					<a href="#/despesa/{{despesa.id}}" class="btn btn-info" data-toggle="tooltip" title="Editar">
+					<a ng-click="!despesa.paga && editar(despesa)" class="btn btn-info" data-toggle="tooltip" title="Editar" ng-disabled="despesa.paga">
 						<i class="fa fa-edit"></i>
 					</a>
 					<a class="btn btn-danger" ng-click="remover(despesa)" data-toggle="tooltip" title="Apagar">

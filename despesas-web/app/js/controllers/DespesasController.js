@@ -1,6 +1,6 @@
-angular.module('gestao-despesas').controller('DespesasController', ['$scope', 'DespesaService', 'CategoriaService', 'StatusDespesaService', DespesasController]);
+angular.module('gestao-despesas').controller('DespesasController', ['$scope', '$location', 'DespesaService', 'CategoriaService', 'StatusDespesaService', DespesasController]);
 
-function DespesasController($scope, DespesaService, CategoriaService, StatusDespesaService) {
+function DespesasController($scope, $location, DespesaService, CategoriaService, StatusDespesaService) {
 
 	var stState;
 
@@ -52,7 +52,11 @@ function DespesasController($scope, DespesaService, CategoriaService, StatusDesp
 		}, function(error) {
 			console.log('Erro ao remover despesa' + error);
 		})
-	}
+	};
+
+	$scope.editar = function (despesa) {
+        $location.path("/despesa/" + despesa.id);
+    };
 
 	function carregarListaCategorias() {
 		CategoriaService.findAll()
