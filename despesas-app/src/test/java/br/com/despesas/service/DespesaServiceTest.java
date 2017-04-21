@@ -401,4 +401,32 @@ public class DespesaServiceTest {
                 allOf(hasProperty("descricao",          is("Médico")))
         ));
     }
+
+    @Test
+    public void pagar() {
+        Despesa despesa = Despesa.builder()
+                .data(LocalDate.now())
+                .valor(BigDecimal.TEN)
+                .descricao("Conta de Luz")
+                .categoria(Categoria.MORARIA)
+                .paga(false)
+                .build();
+        despesaService.save(despesa);
+
+        final List<Despesa> despesasAntesDePagar = despesaService.findAll();
+        assertEquals(1, despesasAntesDePagar.size());
+        assertThat(despesasAntesDePagar, contains(allOf(
+                hasProperty("id", is(despesa.getId())),
+                hasProperty("descricao", is("Conta de Luz")),
+                hasProperty("paga", is(false)))));
+
+        despesaService.pagar(despesa);
+
+        final List<Despesa> despesasPaga = despesaService.findAll();
+        assertEquals(1, despesasPaga.size());
+        assertThat(despesasPaga, contains(allOf(
+                hasProperty("id", is(despesa.getId())),
+                hasProperty("descricao", is("Conta de Luz")),
+                hasProperty("paga", is(true)))));
+    }
 }

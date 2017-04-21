@@ -28,9 +28,7 @@ import java.util.List;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.any;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -125,6 +123,27 @@ public class DespesaRestControllerTest {
         mockMvc.perform(delete("/despesas/" + 1L)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    public void pagar() throws Exception {
+        final Despesa despesa = Despesa.builder()
+                .data(LocalDate.now())
+                .valor(BigDecimal.valueOf(70))
+                .descricao("Conta de Luz")
+                .categoria(Categoria.MORARIA)
+                .build();
+
+        given(despesaService.findById(1L))
+                .willReturn(despesa);
+
+        given(despesaService.pagar(despesa))
+                .willReturn(despesa);
+
+        mockMvc.perform(put("/despesas/pagar/" + 1L)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().string(objectMapper.writeValueAsString(despesa)));
     }
 
 }
