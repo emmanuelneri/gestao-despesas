@@ -38,7 +38,8 @@ public class DespesaService {
         return new PageRequest(despesaBuscaTO.getPagina(), despesaBuscaTO.getQuantidade(),
                 new Sort(Sort.Direction.ASC, "data")
                         .and(new Sort(Sort.Direction.ASC, "categoria"))
-                        .and(new Sort(Sort.Direction.ASC, "descricao")));
+                        .and(new Sort(Sort.Direction.ASC, "descricao"))
+                        .and(new Sort(Sort.Direction.ASC, "id")));
     }
 
     @Transactional
