@@ -8,14 +8,12 @@ function DespesaController($scope, $routeParams, DespesaService, CategoriaServic
 	if ($routeParams.despesaId) {
 		DespesaService.findById($routeParams.despesaId)
 			.then(function(response) {
-				var despesa = response.data;
-				despesa.data = new Date(despesa.data[0], despesa.data[1]-1, despesa.data[2]);
-				$scope.despesa = despesa;
+				$scope.despesa = response.data;
 			}, function(erro) {
 				$scope.alerts.push({
 					type: 'danger',
 					msg: 'Não foi possível buscar a despesa para a edição. Contate o administrador do sistema!'
-				})
+				});
 				console.log('Erro ao buscar despesa: ' + error);
 			});
 	}

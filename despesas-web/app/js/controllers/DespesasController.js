@@ -15,23 +15,13 @@ function DespesasController($scope, $location, DespesaService, CategoriaService,
 
         DespesaService.search($scope.search)
 			.then(function(response) {
-				$scope.displayedCollection = normalizarData(response.data.content);
+				$scope.displayedCollection = response.data.content;
 				stState.pagination.numberOfPages = response.data.totalPages;
             	stState.pagination.totalItemCount = response.data.totalElements;
 			}, function(error) {
 				console.log('Erro ao filtrar despesas');
 			});
-    }
-
-    function normalizarData(despesas) {
-    	var despesasComDataNormalizada = [];
-    	despesas.forEach(function(despesa) {
-    		despesa.data = new Date(despesa.data[0], despesa.data[1]-1, despesa.data[2]);
-    		despesasComDataNormalizada.push(despesa);
-    	})
-
-    	return despesasComDataNormalizada;
-    }
+    };
 
     function getCurrentPage() {
     	var pagination = stState ? stState.pagination : {};
