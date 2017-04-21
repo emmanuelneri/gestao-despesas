@@ -36,7 +36,7 @@ public class DespesaService {
 
     private PageRequest getPaginacaoOrdenada(DespesaBuscaTO despesaBuscaTO) {
         return new PageRequest(despesaBuscaTO.getPagina(), despesaBuscaTO.getQuantidade(),
-                new Sort(Sort.Direction.DESC, "data")
+                new Sort(Sort.Direction.ASC, "data")
                         .and(new Sort(Sort.Direction.ASC, "categoria"))
                         .and(new Sort(Sort.Direction.ASC, "descricao")));
     }
