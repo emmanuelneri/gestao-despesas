@@ -32,3 +32,11 @@ tr th:last-child {
 	font-weight: bold;
 	font-size: x-large;
 }
+
+.red {
+	color: red;
+}
+
+.mt-10 {
+	margin-top: 10px;
+}

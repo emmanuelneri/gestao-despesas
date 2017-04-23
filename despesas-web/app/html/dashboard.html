@@ -55,13 +55,13 @@
     </div>
 </div>
 
-<div class="row" style="margin-top: 10px">
+<div class="row" class="mt-10">
     <div class="col-md-6">
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
                 <tr>
-                    <th colspan="5" style="text-align: center">Próximas 5 despesas a vencer</th>
+                    <th colspan="5" class="text-center">Próximas 5 despesas a vencer</th>
                 </tr>
                 <tr>
                     <th>Categoria</th>
@@ -92,7 +92,7 @@
             <table class="table table-hover">
                 <thead>
                 <tr>
-                    <th colspan="5" style="text-align: center">Despesas atrasadas</th>
+                    <th colspan="5" class="text-center">Despesas atrasadas</th>
                 </tr>
                 <tr>
                     <th>Categoria</th>
@@ -106,7 +106,7 @@
                 <tr ng-repeat="despesa in despesasAtrasadas">
                     <td><span ng-bind="despesa.descricaCategoria"/></td>
                     <td><span ng-bind="despesa.descricao"/></td>
-                    <td style="color: red"><span ng-bind="despesa.dataFormatada"/></td>
+                    <td class="red"><span ng-bind="despesa.dataFormatada"/></td>
                     <td><span ng-bind="despesa.valor | monetario"/></td>
                     <td class="text-center">
                         <a href="#/despesa/{{despesa.id}}" class="btn btn-default" title="Visualizar">
