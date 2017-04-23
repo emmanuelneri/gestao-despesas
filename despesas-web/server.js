@@ -1,6 +1,9 @@
 var http = require('http');
+var yargs = require('yargs').argv;
 var app = require('./config/express')();
 
-http.createServer(app).listen(app.get('port'), function() {
-	console.log('Express Server escutando na porta ' + app.get('port'));
+var port = yargs.port || app.get('port');
+
+http.createServer(app).listen(port, function() {
+	console.log('Express Server escutando na porta ' + port);
 })
