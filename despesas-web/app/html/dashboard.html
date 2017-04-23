@@ -20,7 +20,7 @@
                         <div class="huge">
                             Valor a pagar até final do mês
                         </div>
-                        <div class="valor-panel">{{totalAPagar | monetario}}</div>
+                        <div class="valor-panel"><span ng-bind="totalAPagar | monetario"/></div>
                     </div>
                 </div>
             </div>
@@ -35,7 +35,7 @@
                         <div class="huge">
                             Valor pago no mês
                         </div>
-                        <div class="valor-panel">{{totalPago | monetario}}</div>
+                        <div class="valor-panel"><span ng-bind="totalPago | monetario"/></div>
                     </div>
                 </div>
             </div>
@@ -73,10 +73,10 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="despesa in despesasVencer">
-                    <td>{{despesa.descricaCategoria}}</td>
-                    <td>{{despesa.descricao}}</td>
-                    <td>{{despesa.dataFormatada}}</td>
-                    <td>{{despesa.valor | monetario}}</td>
+                    <td><span ng-bind="despesa.descricaCategoria"/></td>
+                    <td><span ng-bind="despesa.descricao"/></td>
+                    <td><span ng-bind="despesa.dataFormatada"/></td>
+                    <td><span ng-bind="despesa.valor | monetario"/></td>
                     <td class="text-center">
                         <a href="#/despesa/{{despesa.id}}" class="btn btn-default" title="Visualizar">
                             <i class="fa fa-arrow-circle-right"></i>
@@ -104,10 +104,10 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="despesa in despesasAtrasadas">
-                    <td>{{despesa.descricaCategoria}}</td>
-                    <td>{{despesa.descricao}}</td>
-                    <td style="color: red">{{despesa.dataFormatada}}</td>
-                    <td>{{despesa.valor | monetario}}</td>
+                    <td><span ng-bind="despesa.descricaCategoria"/></td>
+                    <td><span ng-bind="despesa.descricao"/></td>
+                    <td style="color: red"><span ng-bind="despesa.dataFormatada"/></td>
+                    <td><span ng-bind="despesa.valor | monetario"/></td>
                     <td class="text-center">
                         <a href="#/despesa/{{despesa.id}}" class="btn btn-default" title="Visualizar">
                             <i class="fa fa-arrow-circle-right"></i>
