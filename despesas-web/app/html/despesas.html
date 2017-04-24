@@ -37,10 +37,14 @@
 							</div>
 						</div>
 
-						<div class="col-md-4">
+						<div class="col-md-3">
 							<div class="form-group">
 								<label for="status">Status:</label><br>
-								<toggle ng-model="search.paga" on="Paga" off="Pendente" onstyle="btn-success" offstyle="btn-danger"/>
+								<select id="status" class="form-control" ng-model="search.paga">
+									<option value="">Selecione</option>
+									<option value="false">Pendente</option>
+									<option value="true">Paga</option>
+								</select>
 							</div>
 						</div>
 					</div>
