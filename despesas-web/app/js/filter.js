@@ -1,6 +1,12 @@
 angular.module('gestao-despesas').filter('monetario', function() {
     return function(input) {
-        return 'R$ ' + formatReal(input);
+        var formattedValue = '';
+        
+        if (input) {
+            formattedValue = 'R$ ' + formatReal(input);
+        }
+
+        return formattedValue;
     };
 });
 
