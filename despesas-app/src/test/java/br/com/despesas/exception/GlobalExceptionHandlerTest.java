@@ -1,6 +1,7 @@
 package br.com.despesas.exception;
 
 import br.com.despesas.model.Despesa;
+import br.com.despesas.model.enums.Categoria;
 import br.com.despesas.service.DespesaService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
@@ -40,6 +41,7 @@ public class GlobalExceptionHandlerTest {
     public void businessExceptionTest() throws Exception {
         final Despesa despesa = Despesa.builder()
                 .descricao("Conta")
+                .categoria(Categoria.ALIMENTACAO)
                 .build();
 
         given(despesaService.save(despesa))
@@ -58,6 +60,7 @@ public class GlobalExceptionHandlerTest {
     public void exceptionTest() throws Exception {
         final Despesa despesa = Despesa.builder()
                 .descricao("Conta")
+                .categoria(Categoria.ALIMENTACAO)
                 .build();
 
         given(despesaService.save(despesa))
