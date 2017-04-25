@@ -36,12 +36,15 @@ module.exports = function(grunt) {
 				src: ['dist/app/js/**/*.js']
 			}
 
+		},
+		jshint: {
+			files: ['Gruntfile.js','server.js','config/*.js','app/js/**/*.js']
 		}
 	});
 
 	grunt.registerTask('default', ['dist', 'minifica']);
 	grunt.registerTask('dist', ['clean', 'copy']);
-	grunt.registerTask('minifica', ['useminPrepare', 'ngAnnotate', 'concat', 'uglify', 'cssmin', 'usemin']);
+	grunt.registerTask('minifica', ['useminPrepare', 'ngAnnotate', 'jshint', 'concat', 'uglify', 'cssmin', 'usemin']);
 
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-clean');
@@ -50,4 +53,5 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-ng-annotate');
 	grunt.loadNpmTasks('grunt-usemin');
+	grunt.loadNpmTasks('grunt-contrib-jshint');
 };
