@@ -5,5 +5,5 @@ function StatusDespesaService($http, AppService) {
 		findAll: function() {
 			return $http.get(AppService.HOST() + '/despesa/status', { cache: true});
 		}
-	}
+	};
 }

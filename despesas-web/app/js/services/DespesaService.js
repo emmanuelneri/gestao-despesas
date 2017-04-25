@@ -27,5 +27,5 @@ function DespesaService($http, AppService) {
         pagar: function(id) {
             return $http.put(AppService.HOST() + '/despesas/pagar/' + id);  
         }
-    }
+    };
 }

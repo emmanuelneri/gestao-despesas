@@ -34,14 +34,14 @@ function DespesasController($scope, $location, DespesaService, CategoriaService,
         }
 
         $scope.filtrar();
-    }
+    };
 
 	$scope.remover = function(despesa) {
 		DespesaService.delete(despesa.id).then(function(response) {
 			$scope.filtrar();
 		}, function(error) {
 			console.log('Erro ao remover despesa' + error);
-		})
+		});
 	};
 
 	$scope.editar = function (despesa) {
@@ -78,7 +78,7 @@ function DespesasController($scope, $location, DespesaService, CategoriaService,
 			}, function(error) {
 				console.log('Erro ao pagar despesa' + error);
 			});
-	}
+	};
 
 	inicializar();
 }

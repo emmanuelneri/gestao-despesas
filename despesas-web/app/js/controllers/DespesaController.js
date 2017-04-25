@@ -26,7 +26,7 @@ function DespesaController($scope, $routeParams, DespesaService, CategoriaServic
 				$scope.alerts.push({
 					type: 'success',
 					msg: 'Despesa salva com sucesso!'
-				})
+				});
 			}, function(response) {
 				if(response.data.length) {
                     response.data.forEach(function(error) {
@@ -76,11 +76,11 @@ function DespesaController($scope, $routeParams, DespesaService, CategoriaServic
 
 	$scope.closeAlert = function(index) {
 		$scope.alerts.splice(index, 1);
-	}
+	};
 
     function inicializarAlerts() {
         $scope.alerts = [];
-    };
+    }
 
 	inicializar();
 }

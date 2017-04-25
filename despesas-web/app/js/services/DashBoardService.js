@@ -21,5 +21,5 @@ function DashBoardService($http, AppService) {
         findDespesasAtrasadas: function() {
             return $http.get(AppService.HOST() + '/dashboard/despesas/atrasadas');
         }
-	}
+	};
 }

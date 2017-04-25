@@ -10,6 +10,6 @@ angular.module('gestao-despesas').directive('dateConverter', function() {
     };
 
     function arraytoDate(value) {
-       return new Date(value[0], value[1]-1, value[2])
+       return new Date(value[0], value[1]-1, value[2]);
     }
 });

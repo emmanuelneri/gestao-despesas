@@ -6,5 +6,5 @@ function CategoriaService($http, AppService) {
 		findAll: function() {
 			return $http.get(AppService.HOST() + '/categorias', { cache: true});
 		}
-	}
+	};
 }

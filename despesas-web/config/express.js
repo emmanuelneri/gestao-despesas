@@ -7,4 +7,4 @@ module.exports = function() {
 	app.use(express.static('./app'));
 
 	return app;
-}
+};
