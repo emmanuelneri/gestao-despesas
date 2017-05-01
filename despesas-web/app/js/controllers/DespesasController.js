@@ -38,6 +38,7 @@ function DespesasController($scope, $location, toaster, DespesaService, Categori
 
 	$scope.remover = function(despesa) {
 		DespesaService.delete(despesa.id).then(function(response) {
+			toaster.pop('success', "", "Despesa excluída com sucesso");
 			$scope.filtrar();
 		}, function(error) {
 			console.error(error);
