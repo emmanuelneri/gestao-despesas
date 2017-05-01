@@ -1,7 +1,7 @@
 CREATE TABLE despesa (
   id bigserial PRIMARY KEY,
   data DATE NOT NULL,
-  valor BIGINT NOT NULL,
+  valor NUMERIC(10,2) NOT NULL,
   descricao VARCHAR(200) NOT NULL,
   categoria VARCHAR(50) NOT NULL,
   paga BOOLEAN NOT NULL DEFAULT FALSE,
