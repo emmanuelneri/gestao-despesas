@@ -16,10 +16,10 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "1.6.3",
-    "angular-route": "1.6.3",
+    "angular": "1.6.4",
+    "angular-route": "1.6.4",
     "bootstrap": "3.3.7",
-    "angular-resource": "1.6.3",
+    "angular-resource": "1.6.4",
     "ng-currency": "1.2.1",
     "angular-i18n": "1.6.4",
     "angular-ui-mask": "1.8.7",
@@ -27,6 +27,7 @@
     "components-font-awesome": "4.7.0",
     "angular-bootstrap": "2.5.0",
     "angular-bootstrap-toggle": "0.1.2",
-    "angular-chart.js ": "1.1.1"
+    "angular-chart.js ": "1.1.1",
+    "AngularJS-Toaster": "angularjs-toaster#2.1.0"
   }
 }
