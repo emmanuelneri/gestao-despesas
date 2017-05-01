@@ -1,6 +1,6 @@
 angular.module('gestao-despesas').filter('monetario', function() {
     return function(input) {
-        var formattedValue = '';
+        var formattedValue = 'R$ 0,00';
         
         if (input) {
             formattedValue = 'R$ ' + formatReal(input);
