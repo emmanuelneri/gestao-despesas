@@ -1,6 +1,6 @@
-angular.module('gestao-despesas').controller('DespesasController', ['$scope', '$location', 'DespesaService', 'CategoriaService', 'StatusDespesaService', DespesasController]);
+angular.module('gestao-despesas').controller('DespesasController', ['$scope', '$location', 'toaster', 'DespesaService', 'CategoriaService', 'StatusDespesaService', DespesasController]);
 
-function DespesasController($scope, $location, DespesaService, CategoriaService, StatusDespesaService) {
+function DespesasController($scope, $location, toaster, DespesaService, CategoriaService, StatusDespesaService) {
 
 	var stState;
 
@@ -19,7 +19,7 @@ function DespesasController($scope, $location, DespesaService, CategoriaService,
 				stState.pagination.numberOfPages = response.data.totalPages;
             	stState.pagination.totalItemCount = response.data.totalElements;
 			}, function(error) {
-				console.log('Erro ao filtrar despesas');
+				console.error(error);
 			});
     };
 
@@ -40,7 +40,7 @@ function DespesasController($scope, $location, DespesaService, CategoriaService,
 		DespesaService.delete(despesa.id).then(function(response) {
 			$scope.filtrar();
 		}, function(error) {
-			console.log('Erro ao remover despesa' + error);
+			console.error(error);
 		});
 	};
 
@@ -51,7 +51,7 @@ function DespesasController($scope, $location, DespesaService, CategoriaService,
 	function carregarListaCategorias() {
 		CategoriaService.findAll()
 			.then(function(response) {
-				$scope.categorias = response.data; //Carregar em cache
+				$scope.categorias = response.data;
 			}, function(error) {
 				
 			});
@@ -60,9 +60,9 @@ function DespesasController($scope, $location, DespesaService, CategoriaService,
 	function carregarListaStatus() {
 		StatusDespesaService.findAll()
 			.then(function(response) {
-				$scope.listaStatus = response.data; //Carregar em cache
+				$scope.listaStatus = response.data;
 			}, function(error) {
-				console.log('Erro ao carregar categorias');
+				console.error(error);
 			});
 	}
 
@@ -74,9 +74,10 @@ function DespesasController($scope, $location, DespesaService, CategoriaService,
 	$scope.pagar = function(idDespesa) {
 		DespesaService.pagar(idDespesa)
 			.then(function(response) {
-				console.log('Despesa paga com sucesso');
+				toaster.pop('success', "", "Despesa paga com sucesso");
 			}, function(error) {
-				console.log('Erro ao pagar despesa' + error);
+				console.error(error);
+				toaster.pop('error', "", "Ocorreu um erro ao pagar a despesa. Contate o administrador do sistema!");
 			});
 	};
 

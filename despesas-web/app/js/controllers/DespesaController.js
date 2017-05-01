@@ -1,6 +1,6 @@
-angular.module('gestao-despesas').controller('DespesaController', ['$scope', '$routeParams', 'DespesaService', 'CategoriaService', 'StatusDespesaService', DespesaController]);
+angular.module('gestao-despesas').controller('DespesaController', ['$scope', '$routeParams', 'toaster', 'DespesaService', 'CategoriaService', 'StatusDespesaService', DespesaController]);
 
-function DespesaController($scope, $routeParams, DespesaService, CategoriaService, StatusDespesaService) {
+function DespesaController($scope, $routeParams, toaster, DespesaService, CategoriaService, StatusDespesaService) {
 
 	$scope.statusList = [];
 	$scope.categorias = [];
@@ -10,11 +10,8 @@ function DespesaController($scope, $routeParams, DespesaService, CategoriaServic
 			.then(function(response) {
 				$scope.despesa = response.data;
 			}, function(erro) {
-				$scope.alerts.push({
-					type: 'danger',
-					msg: 'Não foi possível buscar a despesa para a edição. Contate o administrador do sistema!'
-				});
-				console.log('Erro ao buscar despesa: ' + error);
+				toaster.pop('error', "", "Não foi possível buscar a despesa para a edição. Contate o administrador do sistema!");
+				console.error(erro);
 			});
 	}
 
@@ -23,21 +20,16 @@ function DespesaController($scope, $routeParams, DespesaService, CategoriaServic
 		DespesaService.save($scope.despesa)
 			.then(function(despesa) {
 				$scope.despesa = {};
-				$scope.alerts.push({
-					type: 'success',
-					msg: 'Despesa salva com sucesso!'
-				});
-			}, function(response) {
-				if(response.data.length) {
-                    response.data.forEach(function(error) {
+
+				toaster.pop('success', "", "Despesa salva com sucesso");
+			}, function(error) {
+				if(error.data.length) {
+					error.data.forEach(function(error) {
                         $scope.alerts.push({ type: 'danger', msg: error.error});
                     });
 				} else {
-                    $scope.alerts.push({
-                        type: 'danger',
-                        msg: 'Não foi possível salvar a despesa. Contate o administrador do sistema!'
-                    });
-                    console.log('Erro ao salvar despesa:' + response);
+					toaster.pop('danger', "", "Não foi possível salvar a despesa. Contate o administrador do sistema!");
+                    console.error(error);
 				}
 			});
 	};
@@ -45,18 +37,18 @@ function DespesaController($scope, $routeParams, DespesaService, CategoriaServic
 	function carregarListaCategorias() {
 		CategoriaService.findAll()
 			.then(function(response) {
-				$scope.categorias = response.data; //Carregar em cache
+				$scope.categorias = response.data;
 			}, function(error) {
-				
+				console.error(error);
 			});
 	}
 
 	function carregarListaStatus() {
 		StatusDespesaService.findAll()
 			.then(function(response) {
-				$scope.statusList = response.data; //Carregar em cache
+				$scope.statusList = response.data;
 			}, function(error) {
-				console.log('Erro ao carregar categorias');
+				console.error(error);
 			});
 	}
 

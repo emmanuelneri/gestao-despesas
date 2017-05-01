@@ -22,7 +22,7 @@ function DashboardController($scope, DashBoardService) {
                     });
                 }
             }, function(error) {
-                console.log('Erro ao carregar total de despesas por categoria');
+                console.error('Erro ao carregar total de despesas por categoria: ' + error);
             });
     }
 
@@ -36,7 +36,7 @@ function DashboardController($scope, DashBoardService) {
                     });
                 }
             }, function(error) {
-                console.log('Erro ao carregar total de despesas por pago');
+                console.error('Erro ao carregar total de despesas por pago: ' + error);
             });
     }
 
@@ -45,7 +45,7 @@ function DashboardController($scope, DashBoardService) {
             .then(function(response) {
                 $scope.despesasVencer = response.data;
             }, function(error) {
-                console.log('Erro ao carregar despesas a vencer');
+                console.error('Erro ao carregar despesas a vencer: ' + error);
             });
     }
 
@@ -54,7 +54,7 @@ function DashboardController($scope, DashBoardService) {
             .then(function(response) {
                 $scope.totalAPagar = response.data;
             }, function(error) {
-                console.log('Erro ao carregar total a pagar no mês');
+                console.error('Erro ao carregar total a pagar no mês: ' + error);
             });
     }
 
@@ -64,7 +64,7 @@ function DashboardController($scope, DashBoardService) {
             .then(function (response) {
                 $scope.totalPago = response.data;
             }, function (error) {
-                console.log('Erro ao carregar total pago no mês');
+                console.error('Erro ao carregar total pago no mês: ' + error);
             });
     }
 
@@ -73,7 +73,7 @@ function DashboardController($scope, DashBoardService) {
             .then(function(response) {
                 $scope.despesasAtrasadas = response.data;
             }, function(error) {
-                console.log('Erro ao carregar despesas atrasadas');
+                console.error('Erro ao carregar despesas atrasadas: ' + error);
             });
     }
     
