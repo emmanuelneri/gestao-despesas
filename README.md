@@ -98,5 +98,5 @@ Started AppConfig in xxxx seconds (JVM running for xxxx)
 A aplicação está no ar, porém não existem dados cadastrados. Se deseja validar rapidamente a aplicação, recomendo inserir os dados contidos no arquivo ```popular-base.sql``` dentro da pasta ```scripts```.
 
 <br/>Qualquer sugestão, entre em contato conosco:<br/>
-Emmanuel Neri (ddark.emanu@gmail.com)<br/>
+Emmanuel Neri (emmanuelnerisouza@gmail.com)<br/>
 Fabricio Vallim (fmvallim@gmail.com)
