@@ -261,8 +261,8 @@ public class DespesaServiceTest {
 
 
         final Map<Categoria, BigDecimal> totalMesAtualByCategoria = despesaService.findTotalMesAtualByCategoria();
-        assertEquals(BigDecimal.valueOf(80), totalMesAtualByCategoria.get(Categoria.MORARIA));
-        assertEquals(BigDecimal.valueOf(100), totalMesAtualByCategoria.get(Categoria.ALIMENTACAO));
+        assertEquals(BigDecimal.valueOf(80).setScale(2), totalMesAtualByCategoria.get(Categoria.MORARIA));
+        assertEquals(BigDecimal.valueOf(100).setScale(2), totalMesAtualByCategoria.get(Categoria.ALIMENTACAO));
     }
 
     @Test
@@ -300,7 +300,7 @@ public class DespesaServiceTest {
                 .build());
 
         final BigDecimal totalPago = despesaService.findTotalPagoMesAtual();
-        assertEquals(BigDecimal.valueOf(145), totalPago);
+        assertEquals(BigDecimal.valueOf(145).setScale(2), totalPago);
     }
 
     @Test
@@ -330,7 +330,7 @@ public class DespesaServiceTest {
                 .build());
 
         final BigDecimal totalAPagarMesAtual = despesaService.findTotalAPagarMesAtual();
-        assertEquals(BigDecimal.valueOf(170), totalAPagarMesAtual);
+        assertEquals(BigDecimal.valueOf(170).setScale(2), totalAPagarMesAtual);
     }
 
     @Test
