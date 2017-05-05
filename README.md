@@ -1,3 +1,5 @@
+Link apresentação no TDC 2017 - Florianópolis: https://www.slideshare.net/emmanuelnerisouza/a-trilogia-spring-mvc-spring-data-angularjs
+
 # Visão geral
 
 Esse projeto é um [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) de gestão de despesas que visa demonstrar o uso de diversas tecnologias, sendo as principais delas: [AngularJS](https://angularjs.org/), [Spring MVC](https://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html) e [Spring Data JPA](http://projects.spring.io/spring-data-jpa/).
