@@ -99,6 +99,57 @@ Started AppConfig in xxxx seconds (JVM running for xxxx)
 ```
 A aplicação está no ar, porém não existem dados cadastrados. Se deseja validar rapidamente a aplicação, recomendo inserir os dados contidos no arquivo ```popular-base.sql``` dentro da pasta ```scripts```.
 
+# Setup alternativo (Docker)
+
+## Pré-requisito
+
+Os pré-requistos são similares ao setup demonstrado acima, pois a aplicação será construída localmente e apenas executada no Docker, assim, é preciso acrescentar a instalação do Docker com versão 1.13.0+.
+
+## Instalação da aplicação
+
+A instalação continua identica, pois o build da aplicação continua local. 
+
+Iniciando pela configuração do módulo web. Execute os comandos abaixo para instalar suas dependências:
+```
+cd gestao-despesas/despesas-web
+npm install
+bower install
+```
+Na sequência a configuração do módulo de back-end. Execute os comandos abaixo para instalar suas dependências: 
+```
+cd gestao-despesas/despesas-app
+mvn clean package -Dmaven.test.skip=true
+```
+
+## Instalação das imagens Docker
+
+Será necessário a criação de duas imagens, uma para o módulo web e outra para o módulo de back-end, para a base de dados não é necessários porque utilizaremos uma imagem pronta do postgres.
+
+Iniciando pela criação da imagem do módulo web. Execute os comandos abaixo para instalar a imagem docker de acordo com o arquivo Dockerfile dentro do módulo web:
+
+```
+cd gestao-despesas/despesas-web
+docker build -t despesas/web .
+```
+
+Na sequência a criação da imagem do módulo de back-end. Execute os comandos abaixo para instalar a imagem docker de acordo com o arquivo Dockerfile dentro do módulo de back-end:
+```
+cd gestao-despesas/despesas-app
+mvn dockerfile:build
+```
+
+Observação: No módulo de back-end há um plugin configurado no pom.xml para auxiliar na criação da imagem Docker da aplicação Spring Boot.
+
+## Executando ambiente 
+
+Finalizado a instalação das imagens, apensar executar o docker-compose para inicilizar as imagens com as configuração necessárias, feito no arquivo docker-compose.yml na raiz do projeto.  
+```
+cd gestao-despesas
+docker-compose up
+```
+
+Pronto. Se tudo ocorreu bem, o sistema está disponível no endereço http://localhost:8080.
+
 <br/>Qualquer sugestão, entre em contato conosco:<br/>
 Emmanuel Neri (emmanuelnerisouza@gmail.com)<br/>
 Fabricio Vallim (fmvallim@gmail.com)
