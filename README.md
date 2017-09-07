@@ -148,7 +148,7 @@ cd gestao-despesas
 docker-compose up
 ```
 
-Pronto. Se tudo ocorreu bem, o sistema está disponível no endereço http://localhost:8080.
+Pronto. Se tudo ocorreu bem, o sistema está disponível no endereço http://localhost:3000.
 
 <br/>Qualquer sugestão, entre em contato conosco:<br/>
 Emmanuel Neri (emmanuelnerisouza@gmail.com)<br/>
