@@ -99,7 +99,7 @@ Started AppConfig in xxxx seconds (JVM running for xxxx)
 ```
 A aplicação está no ar, porém não existem dados cadastrados. Se deseja validar rapidamente a aplicação, recomendo inserir os dados contidos no arquivo ```popular-base.sql``` dentro da pasta ```scripts```.
 
-Observação: Mais informações sobre os serviços disponibilizados pelo back-end podem ser vistos através do Swagger no endereço: ``` http://localhost:8081/swagger-ui.html#/```.
+Observação: Mais informações sobre os serviços disponibilizados pelo back-end podem ser vistos através do Swagger no endereço: ``` http://localhost:8081/swagger-ui.html```.
 
 # Setup alternativo (Docker)
 
