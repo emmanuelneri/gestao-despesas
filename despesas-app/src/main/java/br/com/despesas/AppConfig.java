@@ -18,12 +18,14 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableAutoConfiguration
 @EntityScan(basePackageClasses = {Despesa.class, Jsr310JpaConverters.class})
 @ComponentScan(basePackageClasses = {DespesaService.class, DespesaRestController.class, GlobalExceptionHandler.class})
 @EnableJpaRepositories(basePackageClasses = {DespesaRepository.class})
+@EnableSwagger2
 public class AppConfig {
 
     public static void main(String[] args) {
